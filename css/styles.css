@@ -107,7 +107,7 @@ svg{display:block;max-width:100%}
 .auth-title {
   font-family: MontserratM;
   margin: 12px 0 0;
-  color: var(--app-theme-primary-color);
+  color: #000;
     margin: 0;
   font-size: clamp(1.3em, 4vw, 2em);
   line-height: 1.5;
@@ -182,7 +182,7 @@ padding:0;
   font-family: MontserratR;
   font-size:.93rem;
   font-weight:500;
-  color: var(--app-theme-primary-color);
+  color: #000;
 }
 
 /*** Google auth *****/

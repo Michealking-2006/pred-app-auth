@@ -2,7 +2,7 @@
 
 const SUPABASE = window.supabaseClient || null;
 const AUTH_ORIGIN = window.location.origin;
-const APP_ORIGIN = "https://app.Scoutwave.com";
+const APP_ORIGIN = "https://app.scoutwave.com";
 
 /****** DOM Helpers ******/
 
@@ -18,10 +18,9 @@ function qsa(sel, root = document) {
 
 function requireSupabase() {
   if (!SUPABASE) {
-    showNotice("Supabase client is not initialized.", "error");
+    showNotice("Something went wrong. Please try again later.", "error");
     return false;
   }
-
   return true;
 }
 
@@ -98,6 +97,8 @@ function setBusy(form, busy) {
 }
 
 function clearFieldState(field) {
+  if (!field) return;
+
   field.classList.remove("invalid");
 
   const error = qs(".error-text", field);
@@ -105,6 +106,8 @@ function clearFieldState(field) {
 }
 
 function setFieldError(field, message) {
+  if (!field) return;
+
   field.classList.add("invalid");
 
   const error = qs(".error-text", field);
@@ -128,7 +131,7 @@ function bindPasswordToggles(root = document) {
       <path fill="currentColor" fill-rule="evenodd" d="M14.822.854a.5.5 0 1 0-.707-.708l-2.11 2.11C10.89 1.483 9.565.926 8.06.926c-5.06 0-8.06 6-8.06 6s1.162 2.323 3.258 4.078l-2.064 2.065a.5.5 0 1 0 .707.707L14.822.854zM4.86 9.403L6.292 7.97A1.999 1.999 0 0 1 6 6.925c0-1.11.89-2 2-2c.384 0 .741.106 1.045.292l1.433-1.433A3.98 3.98 0 0 0 8 2.925c-2.2 0-4 1.8-4 4c0 .938.321 1.798.859 2.478zm7.005-3.514l1.993-1.992A14.873 14.873 0 0 1 16 6.925s-3 6-7.94 6a6.609 6.609 0 0 1-2.661-.57l1.565-1.566c.33.089.678.136 1.036.136c2.22 0 4-1.78 4-4c0-.358-.047-.705-.136-1.036zM9.338 8.415l.152-.151a1.996 1.996 0 0 1-.152.151z"></path>
     </svg>`;
 
-  qsa("[data-password-toggle]", root).forEach(btn => {
+  qsa("[data-password-toggle]", root).forEach((btn) => {
     if (btn.dataset.bound) return;
     btn.dataset.bound = "true";
 
@@ -140,7 +143,6 @@ function bindPasswordToggles(root = document) {
 
     btn.addEventListener("click", () => {
       const shouldShow = target.type === "password";
-
       target.type = shouldShow ? "text" : "password";
       btn.innerHTML = shouldShow ? HIDE_ICON : SHOW_ICON;
       btn.setAttribute("aria-label", shouldShow ? "Hide password" : "Show password");
@@ -156,7 +158,6 @@ async function redirectIfAlreadySignedIn() {
     redirectToApp();
     return true;
   }
-
   return false;
 }
 
@@ -210,7 +211,7 @@ function loginPage() {
 
     const { data, error } = await SUPABASE.auth.signInWithPassword({
       email: normalizeEmail(emailField.value),
-      password: passwordField.value
+      password: passwordField.value,
     });
 
     setBusy(form, false);
@@ -244,27 +245,15 @@ function signupPage() {
     e.preventDefault();
     clearFormState(form);
 
-    const businessName = qs("#businessName");
     const fullName = qs("#fullName");
-    const phone = qs("#signupPhone");
     const email = qs("#signupEmail");
     const passwordField = qs("#signupPassword");
     const confirm = qs("#signupConfirm");
 
     let ok = true;
 
-    if (!businessName.value.trim()) {
-      setFieldError(businessName.closest(".field"), "Business name is required.");
-      ok = false;
-    }
-
     if (!fullName.value.trim()) {
       setFieldError(fullName.closest(".field"), "Full name is required.");
-      ok = false;
-    }
-
-    if (!phone.value.trim()) {
-      setFieldError(phone.closest(".field"), "Phone number is required.");
       ok = false;
     }
 
@@ -301,12 +290,10 @@ function signupPage() {
       password: passwordField.value,
       options: {
         data: {
-          business_name: businessName.value.trim(),
           full_name: fullName.value.trim(),
-          phone: phone.value.trim()
         },
-        emailRedirectTo: `${AUTH_ORIGIN}/login.html`
-      }
+        emailRedirectTo: `${AUTH_ORIGIN}/login.html`,
+      },
     });
 
     setBusy(form, false);
@@ -354,7 +341,7 @@ function forgotPage() {
     setBusy(form, true);
 
     const { error } = await SUPABASE.auth.resetPasswordForEmail(normalizeEmail(emailField.value), {
-      redirectTo: `${AUTH_ORIGIN}/reset-password.html`
+      redirectTo: `${AUTH_ORIGIN}/reset-password.html`,
     });
 
     setBusy(form, false);
@@ -406,7 +393,7 @@ function resetPage() {
     setBusy(form, true);
 
     const { error } = await SUPABASE.auth.updateUser({
-      password: passwordField.value
+      password: passwordField.value,
     });
 
     setBusy(form, false);
@@ -436,7 +423,6 @@ async function dashboardPage() {
 
   const displayName =
     user.user_metadata?.full_name ||
-    user.user_metadata?.business_name ||
     user.email ||
     "User";
 
@@ -460,7 +446,7 @@ async function init() {
   const page = document.body.dataset.page;
 
   if (!SUPABASE) {
-    showNotice("Supabase client is missing.", "error");
+    showNotice("Something went wrong. Please refresh the page and try again.", "error");
     return;
   }
 
