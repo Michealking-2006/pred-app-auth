@@ -2,7 +2,7 @@
 
 const SUPABASE = window.supabaseClient || null;
 const AUTH_ORIGIN = window.location.origin;
-const APP_ORIGIN = "https://app.scoutwave.com";
+const APP_ORIGIN = "https://app.myscoutwave.com";
 
 /****** DOM Helpers ******/
 
