@@ -145,9 +145,6 @@ padding:0;
 .page-link:hover{text-decoration:underline}
 
 
-
-
-
 .notice{
   font-family: NotoSansR;
   display:none;
@@ -381,60 +378,7 @@ padding:0;
   font-weight:800;
 }
 
-.password-criteria{
-  list-style:none;
-  margin:0;
-  padding:0;
-  display:grid;
-  gap:8px;
-  font-size:.88rem;
-  color:var(--muted);
-}
 
-.password-criteria li{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.password-criteria i{
-  width:16px;
-  height:16px;
-  border-radius:50%;
-  display:inline-grid;
-  place-items:center;
-  font-style:normal;
-  font-size:.75rem;
-  flex:0 0 auto;
-  background:#eef2ff;
-  color:var(--primary);
-}
-.password-criteria .bad i{
-  background:#fee2e2;
-  color:var(--danger);
-}
-.password-criteria .ok{
-  color:#374151;
-}
-.password-criteria .good i{
-  background:#dcfce7;
-  color:var(--success);
-}
-
-.progress{
-  height:10px;
-  border-radius:999px;
-  background:#e9edf5;
-  overflow:hidden;
-}
-.progress span{
-  display:block;
-  width:20%;
-  height:100%;
-  background:var(--danger);
-  border-radius:inherit;
-  transition:width .2s ease, background .2s ease;
-}
 
 .spinner{
   width:16px;
@@ -469,114 +413,6 @@ padding:0;
   font-size:.92rem;
 }
 
-/* ==========================
-   App Form Checkbox
-========================== */
-
-.app-form-checkbox-label{
-    display:flex;
-    align-items:flex-start;
-    gap:12px;
-
-    position:relative;
-
-    width:100%;
-
-    
-    user-select:none;
-}
-
-.app-form-checkbox-input{
-    position:absolute;
-    opacity:0;
-    pointer-events:none;
-}
-
-.app-form-checkbox-box{
-    position:relative;
-    flex-shrink:0;
-
-    width:22px;
-    height:22px;
-
-    margin-top:1px;
-
-    border:1.5px solid #d8d8d8;
-    border-radius:7px;
-    background:#fff;
-
-    transition:
-        background .2s,
-        border-color .2s;
-}
-
-.app-form-checkbox-box::after{
-    content:"";
-
-    position:absolute;
-    left:7px;
-    top:3px;
-
-    width:5px;
-    height:10px;
-
-    border:solid #fff;
-    border-width:0 2px 2px 0;
-
-    transform:rotate(45deg);
-
-    opacity:0;
-    transition:opacity .2s;
-}
-
-.app-form-checkbox-text{
-    flex:1;
-
-    color:#555;
-    font-family:NotoSansR;
-    font-size:.92rem;
-    line-height:1.6;
-}
-
-/* Hover */
-
-.app-form-checkbox-label:hover
-.app-form-checkbox-box{
-    border-color:#bdbdbd;
-}
-
-/* Focus */
-
-.app-form-checkbox-input:focus-visible
-+ .app-form-checkbox-box{
-    outline:3px solid rgba(0,0,0,.08);
-    outline-offset:2px;
-}
-
-/* Checked */
-
-.app-form-checkbox-input:checked
-+ .app-form-checkbox-box{
-    background:#111;
-    border-color:#111;
-}
-
-.app-form-checkbox-input:checked
-+ .app-form-checkbox-box::after{
-    opacity:1;
-}
-
-/* Disabled */
-
-.app-form-checkbox-input:disabled
-+ .app-form-checkbox-box{
-    opacity:.5;
-}
-
-.app-form-checkbox-input:disabled
-~ .app-form-checkbox-text{
-    opacity:.5;
-}
 
 
 
