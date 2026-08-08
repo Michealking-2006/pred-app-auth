@@ -9,7 +9,7 @@
 <body data-page="signup">
   <main class="auth-page">
     <section class="auth-hero">
-      <img src="/assets/logos/Scoutwave-logo-light-theme.svg" alt="Scoutwave Logo" class="app-logo">
+      <img src="/assets/logos/scoutwave-logo.png" alt="Scoutwave Logo" class="app-logo">
       <h1 class="auth-title">Sign up to Scoutwave and get football predictions</h1>
       <p class="auth-subtitle">Create your account to start exploring matches, tips, and insights.</p>
     </section>
@@ -37,35 +37,18 @@
 
       <form id="signupForm" class="form-grid" novalidate>
         <div class="field">
-          <label for="fullName">Full Name</label>
-          <input class="input" id="fullName" type="text" autocomplete="name" placeholder="Your full name" />
-          <small class="error-text"></small>
-        </div>
-
-        <div class="field">
           <label for="signupEmail">Email Address</label>
           <input class="input" id="signupEmail" type="email" autocomplete="email" placeholder="Enter your email" />
           <small class="error-text"></small>
         </div>
 
-        <div class="split-2">
-          <div class="field">
-            <label for="signupPassword">Create Password</label>
-            <div class="input-stack">
-              <input class="input" id="signupPassword" type="password" autocomplete="new-password" placeholder="Create a password" />
-              <button type="button" class="icon-toggle" data-password-toggle="signupPassword">Show</button>
-            </div>
-            <small class="error-text"></small>
+        <div class="field">
+          <label for="signupPassword">Create Password</label>
+          <div class="input-stack">
+            <input class="input" id="signupPassword" type="password" autocomplete="new-password" placeholder="Create a password" />
+            <button type="button" class="icon-toggle" data-password-toggle="signupPassword">Show</button>
           </div>
-
-          <div class="field">
-            <label for="signupConfirm">Confirm Password</label>
-            <div class="input-stack">
-              <input class="input" id="signupConfirm" type="password" autocomplete="new-password" placeholder="Repeat password" />
-              <button type="button" class="icon-toggle" data-password-toggle="signupConfirm">Show</button>
-            </div>
-            <small class="error-text"></small>
-          </div>
+          <small class="error-text"></small>
         </div>
 
         <button type="submit" class="primary">
@@ -89,7 +72,6 @@
   </main>
 
   <script src="/js/script.js"></script>
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="/supabase/client.js"></script>
   <script src="/supabase/auth.js"></script>

@@ -245,17 +245,10 @@ function signupPage() {
     e.preventDefault();
     clearFormState(form);
 
-    const fullName = qs("#fullName");
     const email = qs("#signupEmail");
     const passwordField = qs("#signupPassword");
-    const confirm = qs("#signupConfirm");
 
     let ok = true;
-
-    if (!fullName.value.trim()) {
-      setFieldError(fullName.closest(".field"), "Full name is required.");
-      ok = false;
-    }
 
     if (!email.value.trim()) {
       setFieldError(email.closest(".field"), "Email address is required.");
@@ -273,14 +266,6 @@ function signupPage() {
       ok = false;
     }
 
-    if (!confirm.value.trim()) {
-      setFieldError(confirm.closest(".field"), "Please confirm your password.");
-      ok = false;
-    } else if (confirm.value !== passwordField.value) {
-      setFieldError(confirm.closest(".field"), "Passwords do not match.");
-      ok = false;
-    }
-
     if (!ok) return;
 
     setBusy(form, true);
@@ -289,9 +274,6 @@ function signupPage() {
       email: normalizeEmail(email.value),
       password: passwordField.value,
       options: {
-        data: {
-          full_name: fullName.value.trim(),
-        },
         emailRedirectTo: `${AUTH_ORIGIN}/login.html`,
       },
     });
