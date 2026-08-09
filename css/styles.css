@@ -24,12 +24,6 @@
   src: url("/assets/fonts/NotoSans-Bold.ttf");
 }
 
-
-::selection {
-  background: #000;
-  color: #fff;
-}
-
 :root{
     --app-theme-secondary-color: #fff;
   --app-theme-primary-color: #d60000;
@@ -49,9 +43,22 @@
   --radius:24px;
 }
 
-*,
+
+::selection {
+  background: var(--app-theme-primary-color);
+  color: #fff;
+
+}
+
+* {
+  cursor: none;
+}
+
+
+
+/*,
 *::before,
-*::after{box-sizing:border-box}
+*::after{box-sizing:border-box}*/
 
 html,body{min-height:100%}
 body{
