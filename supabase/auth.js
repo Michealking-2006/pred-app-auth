@@ -60,7 +60,7 @@ window.location.replace(APP_ORIGIN);
 }
 
 function redirectToAuth(page = "login.html") {
-window.location.replace("${AUTH_ORIGIN}/${page}");
+window.location.replace(`${AUTH_ORIGIN}/${page}`);
 }
 
 /* ---------------------------------
