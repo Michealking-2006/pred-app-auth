@@ -485,8 +485,8 @@ async function signInWithGoogle() {
   }
 }
 
-function bindGoogleButton() {
-  const button = qs("#googleSignInBtn");
+function bindGoogleButton(root = document) {
+  const button = qs("[data-google-signup]", root);
   if (!button || button.dataset.bound === "true") return;
 
   button.dataset.bound = "true";
@@ -514,7 +514,11 @@ async function init() {
     bindGoogleButton();
   }
 
-  if (page === "signup") signupPage();
+  if (page === "signup") {
+    signupPage();
+    bindGoogleButton();
+  }
+
   if (page === "forgot") forgotPage();
   if (page === "reset") resetPage();
   if (page === "dashboard") dashboardPage();
